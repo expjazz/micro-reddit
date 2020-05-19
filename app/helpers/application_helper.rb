@@ -1,23 +1,23 @@
 module ApplicationHelper
-
   def comments_size(comments)
     return comments if comments.size.positive?
+
     []
   end
 
   def comm(comm)
     if comm
-      return comm.comment
+      comm.comment
     else
-      return false 
-    end
-  end
-  def aut(comm)
-    if comm
-      return comm.user.username
-    else
-      return false 
+      false
     end
   end
 
+  def aut(comm)
+    if comm
+      comm.user.username
+    else
+      false
+    end
+  end
 end
