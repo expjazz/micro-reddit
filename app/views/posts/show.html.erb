@@ -3,5 +3,21 @@
     <h5 class="card-title h2"><%= @post.title%></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= @post.user.username%></h6>
     <p class="card-text"><%= @post.content%></p>
+    <div class="card">
+    <ul class="list-group list-group-flush">
+      <% if @post.comments.size > 0 %>
+          <% @post.comments.each do |comm|%>
+          <li class="list-group-item"><%= comm.comment %></li>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
+  </div>
+ <%= form_with(model: [ @post, Comment.new ]) do |f| %>
+  <div class="form-group">
+    <%= f.label :comment %>
+    <%= f.text_area :comment, class: 'form-control', placeholder: 'title'%>
+  </div>
+  <button type="submit" class="btn btn-primary">Comment</button>
+  <% end %>
 </div>
