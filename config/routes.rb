@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   delete 'logout', to: 'sessions#destroy'
   resources :users
+  resources :posts
 end
