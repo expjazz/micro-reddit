@@ -7,9 +7,10 @@ class UsersController < ApplicationController
   def edit; end 
 
   def create
-    byebug
     @user = User.new(params.require(:user).permit(:username, :password, :email))
-    redirect_to root
+    @user.save
+    session[:id] = @user[:id]
+    redirect_to root_path
   end
 
 end

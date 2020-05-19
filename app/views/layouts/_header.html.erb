@@ -8,9 +8,14 @@
         <a class="navbar-brand" href="#">MicroReddit</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Login", login_path  %></li>
-            <li><%= link_to "Sign Up", signup_path  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <% if logged_in? %>
+                <li><%= link_to "Log out", logout_path,  method: :delete  %></li>
+                    <li><%= current_user.username %></li>
+
+            <% else %>
+                   <li><%= link_to "Login", login_path  %></li>
+                   <li><%= link_to "Sign Up", signup_path  %></li>
+            <% end %>
           </ul>
         </div>
       </div>
