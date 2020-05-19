@@ -1,19 +1,22 @@
-<div class="card" style="width: 18rem;">
+<div class="card text-center">
   <div class="card-body">
     <h5 class="card-title h2"><%= @post.title%></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= @post.user.username%></h6>
     <p class="card-text"><%= @post.content%></p>
     <div class="card">
     <ul class="list-group list-group-flush">
-      <% if @post.comments.size > 0 %>
-          <% @post.comments.each do |comm|%>
-          <li class="list-group-item"><%= comm.comment %></li>
+
+          <p class="text-muted">Here are the comments: </p>
+
+          <% comments_size(@post.comments).each do |comm|%>
+          <li class="list-group-item d-flex flex-column"><%= comm(comm) %>
+          <small class="text-muted"> <%= aut(comm) %> </small>
+          </li>
         <% end %>
-      <% end %>
     </ul>
   </div>
   </div>
- <%= form_with(model: [ @post, Comment.new ]) do |f| %>
+ <%= form_with(model: [ @post, Comment.new ], local: true) do |f| %>
   <div class="form-group">
     <%= f.label :comment %>
     <%= f.text_area :comment, class: 'form-control', placeholder: 'title'%>
